@@ -1,8 +1,8 @@
 package main
 
 import (
-	"net/http"
 	"fmt"
+	"net/http"
 	"strconv"
 )
 
@@ -13,7 +13,7 @@ func main() {
 		fmt.Fprint(w, "Hello, World !")
 	})
 
-	err := http.ListenAndServe(":" + strconv.Itoa(PORT), nil)
+	err := http.ListenAndServe(":"+strconv.Itoa(PORT), nil)
 	if nil != err {
 		fmt.Print(err)
 	}
