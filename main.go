@@ -4,16 +4,18 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"github.com/julienschmidt/httprouter"
 )
 
 const PORT int = 8080
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprint(w, "Hello, World !")
+	router := httprouter.New()
+	router.GET("/", func(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+		fmt.Fprint(w, "Hello, new World !")
 	})
 
-	err := http.ListenAndServe(":"+strconv.Itoa(PORT), nil)
+	err := http.ListenAndServe(":"+strconv.Itoa(PORT), router)
 	if nil != err {
 		fmt.Print(err)
 	}
