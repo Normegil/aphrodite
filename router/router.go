@@ -6,8 +6,8 @@ import (
 	"github.com/normegil/aphrodite/handler"
 )
 
-func New() http.Handler {
+func New(env handler.Env) http.Handler {
 	router := httprouter.New()
-	router.GET("/", handler.PrintHello)
+	router.GET("/", handler.PrintHelloHandler(env))
 	return router
 }
