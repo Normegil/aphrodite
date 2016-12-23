@@ -2,12 +2,12 @@ package handler
 
 import (
 	"net/http"
-	"github.com/normegil/aphrodite/model"
+	"github.com/sirupsen/logrus"
 )
 
-func RequestLogger(env model.Env, h http.Handler) http.Handler {
+func RequestLogger(log logrus.FieldLogger, h http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		env.Log.WithField("Request", r).Debug("Request received")
+		log.WithField("Request", r).Debug("Request received")
 		h.ServeHTTP(w, r)
 	})
 }

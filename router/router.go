@@ -30,7 +30,7 @@ func (r Router) Listen() error {
 		return err
 	}
 
-	h := handler.RequestLogger(env, r.router)
+	h := handler.AuthenticationLogger(env, handler.RequestLogger(env.Log, r.router))
 
 	port := strconv.Itoa(r.Port)
 	env.Log.WithField("port", port).Info("Server listening")
