@@ -9,6 +9,6 @@ import (
 
 func New(env model.Env) http.Handler {
 	router := httprouter.New()
-	router.GET("/image/:id", handler.PrintHelloHandler(env))
+	router.GET("/image", handler.ImageGetAll(env))
 	return router
 }
