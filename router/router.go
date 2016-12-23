@@ -30,9 +30,11 @@ func (r Router) Listen() error {
 		return err
 	}
 
+	h := handler.RequestLogger(env, r.router)
+
 	port := strconv.Itoa(r.Port)
 	env.Log.WithField("port", port).Info("Server listening")
-	if err = http.ListenAndServe(":" + port, r.router); nil != err {
+	if err = http.ListenAndServe(":" + port, h); nil != err {
 		return err
 	}
 	return nil

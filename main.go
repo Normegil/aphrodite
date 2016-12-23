@@ -20,7 +20,7 @@ func main() {
 
 	err = router.Router{
 		Port: PORT,
-		LoggingLevel: logrus.InfoLevel,
+		LoggingLevel: logrus.DebugLevel,
 		DataSource: dbConn,
 	}.Listen()
 	if nil != err {
