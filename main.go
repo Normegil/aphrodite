@@ -1,10 +1,11 @@
 package main
 
 import (
+	"os"
+
+	"github.com/normegil/aphrodite/db"
 	"github.com/normegil/aphrodite/router"
 	"github.com/sirupsen/logrus"
-	"github.com/normegil/aphrodite/db"
-	"os"
 )
 
 const DB_TYPE = "postgres"
@@ -19,9 +20,9 @@ func main() {
 	defer dbConn.Close()
 
 	err = router.Router{
-		Port: PORT,
+		Port:         PORT,
 		LoggingLevel: logrus.DebugLevel,
-		DataSource: dbConn,
+		DataSource:   dbConn,
 	}.Listen()
 	if nil != err {
 		panic(err)

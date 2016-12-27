@@ -13,13 +13,13 @@ type Image struct {
 
 func from(img Image) Image {
 	return Image{image{
-		ID: img.ID(),
+		ID:   img.ID(),
 		Name: img.Name(),
 	}}
 }
 
 func (i Image) ID() ID {
-	return i.image.ID;
+	return i.image.ID
 }
 
 func (i Image) WithID(id ID) Image {
@@ -29,7 +29,7 @@ func (i Image) WithID(id ID) Image {
 }
 
 func (i Image) Name() string {
-	return i.image.Name;
+	return i.image.Name
 }
 
 func (i Image) WithName(name string) Image {

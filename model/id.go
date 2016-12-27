@@ -1,8 +1,9 @@
 package model
 
 import (
-	"github.com/satori/go.uuid"
 	"encoding/json"
+
+	"github.com/satori/go.uuid"
 )
 
 type ID struct {

@@ -1,11 +1,12 @@
 package handler
 
 import (
-	"net/http"
-	"github.com/julienschmidt/httprouter"
-	"github.com/normegil/aphrodite/model"
 	"encoding/json"
 	"fmt"
+	"net/http"
+
+	"github.com/julienschmidt/httprouter"
+	"github.com/normegil/aphrodite/model"
 )
 
 func ImageGetAll(env model.Env) httprouter.Handle {
