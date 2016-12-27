@@ -14,7 +14,7 @@ func ImageGetAll(env model.Env) httprouter.Handle {
 		images := env.DataSource.AllImages(0, 20)
 		jsonImages, err := json.Marshal(images)
 		if nil != err {
-			fmt.Fprint(w, "ERROR", err)
+			Error(env.Log, err, w)
 		}
 		fmt.Fprint(w, string(jsonImages))
 	}

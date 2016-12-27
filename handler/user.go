@@ -18,17 +18,17 @@ func UserCreate(env model.Env) httprouter.Handle {
 		var decoded UserCreateRequest
 		err := json.NewDecoder(r.Body).Decode(&decoded)
 		if nil != err {
-			env.Log.WithError(err).Error("Unable to read request")
+			Error(env.Log, model.NewErrWithCode(40001, err), w)
 			return
 		}
 		user, err := model.NewUser(decoded.Name, decoded.Password)
 		if nil != err {
-			env.Log.WithError(err).Error("User creation failed")
+			Error(env.Log, model.NewErrWithCode(40001, err), w)
 			return
 		}
 		err = env.DataSource.UserCreate(*user)
 		if nil != err {
-			env.Log.WithError(err).Error("User registration failed")
+			Error(env.Log, model.NewErrWithCode(40001, err), w)
 			return
 		}
 		env.Log.WithField("User", user.Name()).Info("User created")

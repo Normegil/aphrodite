@@ -14,13 +14,13 @@ func AuthenticationLogger(env model.Env, h http.Handler) http.Handler {
 		user, err := authenticator.Authenticate(r)
 		if nil != err {
 			if err != security.AuthenticationFailed {
-				env.Log.WithError(err).Error("Unable to authenticate user")
+				Error(env.Log, err, w)
 				return
 			}
 			env.Log.WithError(err).Error("Authentication failed")
 		}
 
-		ctx := context.WithValue(r.Context(), "USER", user)
+		ctx := context.WithValue(r.Context(), "User", user)
 		h.ServeHTTP(w, r.WithContext(ctx))
 	})
 }
