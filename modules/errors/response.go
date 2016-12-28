@@ -45,13 +45,13 @@ func init() {
 }
 
 type response struct {
-	HTTPStatus       int
-	Code             int
-	Message          string
-	DeveloperMessage string
-	MoreInfo         json.JSONURL
-	Time             json.JSONTime
-	Err              json.ErrorJSON
+	HTTPStatus       int `json:"http status"`
+	Code             int `json:"code"`
+	Message          string `json:"message"`
+	DeveloperMessage string `json:"developper message"`
+	MoreInfo         json.JSONURL `json:"more info"`
+	Time             json.JSONTime `json:"time"`
+	Err              json.ErrorJSON `json:"error"`
 }
 
 const DEFAULT_CODE = 500
