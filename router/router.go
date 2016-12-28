@@ -28,7 +28,7 @@ func (r Router) Listen() error {
 
 	port := strconv.Itoa(r.Port)
 	r.Environment.Log.WithField("port", port).Info("Server listening")
-	if err = http.ListenAndServe(":"+port, router); nil != err {
+	if err = http.ListenAndServe(":" + port, router); nil != err {
 		return err
 	}
 	return nil
@@ -39,6 +39,8 @@ func (r Router) registerRoutes(env environment.Environment) error {
 		return errors.New("You forgot to initialize router before registering routes")
 	}
 	r.router.GET("/rest/image", api.ImageGetAll(env))
+
+	r.router.GET("/rest/user/:name", api.UserGet(env))
 	r.router.PUT("/rest/user", api.UserCreate(env))
 	return nil
 }

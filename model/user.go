@@ -4,12 +4,17 @@ import (
 	"crypto/rand"
 
 	"golang.org/x/crypto/scrypt"
+	"encoding/json"
 )
 
+type user struct {
+	Name     string `json:"name"`
+	Password Password `json:"password"`
+	Disabled bool `json:"disabled"`
+}
+
 type User struct {
-	name     string
-	password Password
-	disabled bool
+	user user
 }
 
 func NewUser(name, password string) (*User, error) {
@@ -17,24 +22,32 @@ func NewUser(name, password string) (*User, error) {
 	if nil != err {
 		return nil, err
 	}
-	return &User{
-		name:     name,
-		password: *pass,
-		disabled: false,
-	}, nil
+	return &User{user{
+		Name:     name,
+		Password: *pass,
+		Disabled: false,
+	}}, nil
 }
 
 func (u User) Name() string {
-	return u.name
+	return u.user.Name
 }
 
 func (u User) Password() Password {
-	return u.password
+	return u.user.Password
+}
+
+func (u *User) UnmarshalJSON(b []byte) error {
+	return json.Unmarshal(b, &u.user)
+}
+
+func (u User) MarshalJSON() ([]byte, error) {
+	return json.Marshal(u.user)
 }
 
 type Password struct {
-	hash []byte
-	salt []byte
+	hash            []byte
+	salt            []byte
 
 	scryptN         int
 	scryptR         int

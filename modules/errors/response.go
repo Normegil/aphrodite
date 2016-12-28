@@ -6,6 +6,7 @@ import (
 	"net/url"
 	"strconv"
 	"time"
+	"github.com/normegil/aphrodite/modules/json"
 )
 
 //go:generate go-bindata -pkg $GOPACKAGE -o assets.go assets/
@@ -36,7 +37,7 @@ func init() {
 		defaultResponses = append(defaultResponses, response{
 			Code:             code,
 			HTTPStatus:       httpStatus,
-			MoreInfo:         *moreInfo,
+			MoreInfo:         json.JSONURL(*moreInfo),
 			Message:          row[3],
 			DeveloperMessage: row[4],
 		})
@@ -48,9 +49,9 @@ type response struct {
 	Code             int
 	Message          string
 	DeveloperMessage string
-	MoreInfo         url.URL
-	Time             time.Time
-	Err              error
+	MoreInfo         json.JSONURL
+	Time             json.JSONTime
+	Err              json.ErrorJSON
 }
 
 const DEFAULT_CODE = 500
@@ -69,8 +70,8 @@ func newResponse(e error) *response {
 				Message:          defResp.Message,
 				DeveloperMessage: defResp.DeveloperMessage,
 				MoreInfo:         defResp.MoreInfo,
-				Time:             time.Now(),
-				Err:              e,
+				Time:             json.JSONTime(time.Now()),
+				Err:              json.ErrorJSON{e},
 			}
 		}
 	}
@@ -83,16 +84,14 @@ func newResponse(e error) *response {
 	return &response{
 		Code:             50000,
 		HTTPStatus:       500,
-		Err:              e,
-		MoreInfo:         *moreInfo,
-		Time:             time.Now(),
+		Err:              json.ErrorJSON{e},
+		MoreInfo:         json.JSONURL(*moreInfo),
+		Time:             json.JSONTime(time.Now()),
 		Message:          "An unrecognized error occured on the server",
 		DeveloperMessage: "Error was not found in the error ressources. Generated a default error.",
 	}
 }
 
 func (e response) String() string {
-	errURL := e.MoreInfo
-	u := &errURL
-	return "[Status HTTP:" + strconv.Itoa(e.HTTPStatus) + ";Code:" + strconv.Itoa(e.Code) + ";URL:" + u.String() + ";Time:" + e.Time.String() + ";Msg:" + e.Message + ";DevMsg:" + e.DeveloperMessage + ";Err:" + e.Err.Error() + "]"
+	return "[Status HTTP:" + strconv.Itoa(e.HTTPStatus) + ";Code:" + strconv.Itoa(e.Code) + ";URL:" + e.MoreInfo.RawPath + ";Time:" + e.Time.String() + ";Msg:" + e.Message + ";DevMsg:" + e.DeveloperMessage + ";Err:" + e.Err.Error() + "]"
 }

@@ -22,6 +22,6 @@ func (h Handler) Handle(w http.ResponseWriter, e error) {
 		h.Log.WithError(e).Info("Error")
 		return
 	}
-	fmt.Fprint(w, responseBodyJSON)
+	fmt.Fprint(w, string(responseBodyJSON))
 	h.Log.WithError(e).Info("Error")
 }

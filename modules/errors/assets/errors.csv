@@ -1,2 +1,2 @@
-50000,500,Server Error,An undetermined error happened on the Server,http://example.com/wiki/errors/50000
-40001,400,Cannot parse body into expected JSON object,The request doesn't correspond to the structure needed to solve your request. Please review the body of your request.,http://example.com/wiki/errors/40001
+50000,500,http://example.com/wiki/errors/50000,Server Error,An undetermined error happened on the Server
+40001,400,http://example.com/wiki/errors/40001,Cannot parse body into expected JSON object,The request doesn't correspond to the structure needed to solve your request. Please review the body of your request.
