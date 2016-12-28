@@ -1,4 +1,6 @@
-package model
+package datasource
+
+import "github.com/normegil/aphrodite/model"
 
 type DataSource interface {
 	ImageLoader
@@ -7,8 +9,8 @@ type DataSource interface {
 }
 
 type ImageLoader interface {
-	AllImages(offset, limit int) []Image
-	Image(id ID) Image
+	AllImages(offset, limit int) []model.Image
+	Image(id model.ID) model.Image
 }
 
 type UserLoader interface {
@@ -17,9 +19,9 @@ type UserLoader interface {
 }
 
 type SpecificUserLoader interface {
-	User(name string) (*User, error)
+	User(name string) (*model.User, error)
 }
 
 type UserCreator interface {
-	UserCreate(User) error
+	UserCreate(model.User) error
 }

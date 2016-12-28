@@ -1,4 +1,4 @@
-package handler
+package api
 
 import (
 	"encoding/json"
@@ -6,15 +6,16 @@ import (
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
-	"github.com/normegil/aphrodite/model"
+	"github.com/normegil/aphrodite/modules/environment"
+	"github.com/normegil/aphrodite/modules/errors"
 )
 
-func ImageGetAll(env model.Env) httprouter.Handle {
+func ImageGetAll(env environment.Environment) httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
 		images := env.DataSource.AllImages(0, 20)
 		jsonImages, err := json.Marshal(images)
 		if nil != err {
-			Error(env.Log, err, w)
+			errors.Handler{env.Log}.Handle(w, err)
 		}
 		fmt.Fprint(w, string(jsonImages))
 	}

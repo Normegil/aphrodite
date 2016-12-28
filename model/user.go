@@ -1,8 +1,9 @@
 package model
 
 import (
-	"golang.org/x/crypto/scrypt"
 	"crypto/rand"
+
+	"golang.org/x/crypto/scrypt"
 )
 
 type User struct {

@@ -8,12 +8,13 @@ import (
 	"strings"
 
 	"github.com/normegil/aphrodite/model"
+	"github.com/normegil/aphrodite/modules/datasource"
 )
 
 const AUTHORIZATION_SEPARATOR = ":"
 
 type Authenticator struct {
-	model.SpecificUserLoader
+	datasource.SpecificUserLoader
 }
 
 func (a *Authenticator) Authenticate(r *http.Request) (*model.User, error) {
