@@ -12,7 +12,7 @@ import (
 
 const DB_TYPE = "postgres"
 const DB_URL = "postgres://pqgotest:password@localhost/pqgotest?sslmode=verify-full"
-const PORT int = 8080
+const PORT = 8080
 const LOG_LEVEL = logrus.DebugLevel
 
 func main() {
