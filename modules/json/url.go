@@ -1,13 +1,13 @@
 package json
 
 import (
-	"net/url"
 	"fmt"
+	"net/url"
 )
 
 type JSONURL url.URL
 
-func (j JSONURL) MarshalJSON() ([]byte, error){
+func (j JSONURL) MarshalJSON() ([]byte, error) {
 	fmt.Println(j)
 	return []byte("\"" + j.String() + "\""), nil
 }

@@ -4,7 +4,7 @@ type ErrorJSON struct {
 	Err error
 }
 
-func (j ErrorJSON) MarshalJSON() ([]byte, error){
+func (j ErrorJSON) MarshalJSON() ([]byte, error) {
 	jsonErr := "\"" + j.Error() + "\""
 	return []byte(jsonErr), nil
 }

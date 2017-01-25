@@ -28,7 +28,7 @@ func (r Router) Listen() error {
 
 	port := strconv.Itoa(r.Port)
 	r.Environment.Log.WithField("port", port).Info("Server listening")
-	if err = http.ListenAndServe(":" + port, router); nil != err {
+	if err = http.ListenAndServe(":"+port, router); nil != err {
 		return err
 	}
 	return nil

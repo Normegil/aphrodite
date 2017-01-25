@@ -6,6 +6,7 @@ import (
 	"net/url"
 	"strconv"
 	"time"
+
 	"github.com/normegil/aphrodite/modules/json"
 )
 
@@ -45,12 +46,12 @@ func init() {
 }
 
 type response struct {
-	HTTPStatus       int `json:"http status"`
-	Code             int `json:"code"`
-	Message          string `json:"message"`
-	DeveloperMessage string `json:"developper message"`
-	MoreInfo         json.JSONURL `json:"more info"`
-	Time             json.JSONTime `json:"time"`
+	HTTPStatus       int            `json:"http status"`
+	Code             int            `json:"code"`
+	Message          string         `json:"message"`
+	DeveloperMessage string         `json:"developper message"`
+	MoreInfo         json.JSONURL   `json:"more info"`
+	Time             json.JSONTime  `json:"time"`
 	Err              json.ErrorJSON `json:"error"`
 }
 

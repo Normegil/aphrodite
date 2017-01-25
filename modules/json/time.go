@@ -6,8 +6,8 @@ import (
 
 type JSONTime time.Time
 
-func (j JSONTime) MarshalJSON() ([]byte, error){
-	jsonTime := "\"" + time.Time(j).Format(time.RFC3339) + "\""
+func (j JSONTime) MarshalJSON() ([]byte, error) {
+	jsonTime := "\"" + j.String() + "\""
 	return []byte(jsonTime), nil
 }
 
@@ -22,5 +22,5 @@ func (j *JSONTime) UnmarshalJSON(b []byte) error {
 }
 
 func (j JSONTime) String() string {
-	return time.Time(j).String()
+	return time.Time(j).Format(time.RFC3339)
 }

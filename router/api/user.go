@@ -4,11 +4,12 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"fmt"
+
 	"github.com/julienschmidt/httprouter"
 	"github.com/normegil/aphrodite/model"
 	"github.com/normegil/aphrodite/modules/environment"
 	"github.com/normegil/aphrodite/modules/errors"
-	"fmt"
 )
 
 func UserGet(env environment.Environment) httprouter.Handle {

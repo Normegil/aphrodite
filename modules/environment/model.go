@@ -1,8 +1,8 @@
 package environment
 
 import (
+	"github.com/Sirupsen/logrus"
 	"github.com/normegil/aphrodite/modules/datasource"
-	"github.com/sirupsen/logrus"
 )
 
 type Environment struct {

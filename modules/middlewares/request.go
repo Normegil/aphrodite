@@ -3,7 +3,7 @@ package middlewares
 import (
 	"net/http"
 
-	"github.com/sirupsen/logrus"
+	"github.com/Sirupsen/logrus"
 )
 
 func RequestLogger(log logrus.FieldLogger, h http.Handler) http.Handler {

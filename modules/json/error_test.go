@@ -1,10 +1,11 @@
 package json_test
 
 import (
-	"testing"
 	"errors"
-	"github.com/normegil/aphrodite/modules/test"
+	"testing"
+
 	"github.com/normegil/aphrodite/modules/json"
+	"github.com/normegil/aphrodite/modules/test"
 )
 
 func TestErrorToString(t *testing.T) {

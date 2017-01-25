@@ -1,6 +1,6 @@
 package log
 
-import "github.com/sirupsen/logrus"
+import "github.com/Sirupsen/logrus"
 
 func New(logLevel logrus.Level) logrus.FieldLogger {
 	log := logrus.New()

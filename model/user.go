@@ -3,14 +3,15 @@ package model
 import (
 	"crypto/rand"
 
-	"golang.org/x/crypto/scrypt"
 	"encoding/json"
+
+	"golang.org/x/crypto/scrypt"
 )
 
 type user struct {
-	Name     string `json:"name"`
+	Name     string   `json:"name"`
 	Password Password `json:"password"`
-	Disabled bool `json:"disabled"`
+	Disabled bool     `json:"disabled"`
 }
 
 type User struct {
@@ -46,8 +47,8 @@ func (u User) MarshalJSON() ([]byte, error) {
 }
 
 type Password struct {
-	hash            []byte
-	salt            []byte
+	hash []byte
+	salt []byte
 
 	scryptN         int
 	scryptR         int

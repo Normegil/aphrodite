@@ -3,6 +3,7 @@ package json_test
 import (
 	"testing"
 	"time"
+
 	"github.com/normegil/aphrodite/modules/json"
 	"github.com/normegil/aphrodite/modules/test"
 )
@@ -26,16 +27,16 @@ func TestTimeMarshallJSON(t *testing.T) {
 		testName string
 		input    time.Time
 	}{
-		{"JSON - Empty field", time.Now(),},
-		{"JSON - Classic case", "Test", "\"Test\""},
+		{"JSON - Classic case", time.Now()},
 	}
 	for _, params := range cases {
-		bytes, err := ErrorJSON{errors.New(params.input)}.MarshalJSON()
+		value, err := json.JSONTime(params.input).MarshalJSON()
 		if nil != err {
 			t.Fatal(err.Error())
 		}
-		if params.output != string(bytes) {
-			t.Error(test.Format(params.testName, "Malformed JSON", params.output, params.input))
+		output := "\"" + params.input.Format(time.RFC3339) + "\""
+		if output != string(value) {
+			t.Error(test.Format(params.testName, "Malformed JSON", output, string(value)))
 		}
 	}
 }

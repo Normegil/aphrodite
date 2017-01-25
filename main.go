@@ -3,11 +3,11 @@ package main
 import (
 	"os"
 
+	"github.com/Sirupsen/logrus"
 	"github.com/normegil/aphrodite/modules/database"
 	"github.com/normegil/aphrodite/modules/environment"
 	"github.com/normegil/aphrodite/modules/log"
 	"github.com/normegil/aphrodite/router"
-	"github.com/sirupsen/logrus"
 )
 
 const DB_TYPE = "postgres"
